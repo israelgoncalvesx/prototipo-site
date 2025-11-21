@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future School - AVA Inclusivo</title>
+    <link rel="icon" type="image/png" href="https://img.icons8.com/fluency/48/graduation-cap.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
+    <div vw class="enabled" vw-side="left">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script> new window.VLibras.Widget('https://vlibras.gov.br/app'); </script>
+
+    <div id="loader-overlay" class="loader-overlay">
+        <div class="spinner"></div>
+        <p aria-live="polite">Carregando ambiente...</p>
+    </div>
+
+    <div id="mobile-overlay" class="mobile-overlay" onclick="toggleSidebar()"></div>
+
+    <div class="acessibilidade-float">
+        <div id="menu-acessibilidade" class="menu-acessibilidade hidden">
+            <h3>Opções de Acessibilidade</h3>
+            <button onclick="toggleTema('dark')" class="btn-acess-opt">
+                <i class="fas fa-moon"></i> Modo Escuro
+            </button>
+            <button onclick="toggleTema('daltonico')" class="btn-acess-opt">
+                <i class="fas fa-eye"></i> Alto Contraste
+            </button>
+            <button onclick="toggleDislexia()" class="btn-acess-opt">
+                <i class="fas fa-font"></i> Fonte para Dislexia
+            </button>
+            <button onclick="lerTextoTela()" class="btn-acess-opt">
+                <i class="fas fa-volume-up"></i> Ouvir Tela
+            </button>
+            <button onclick="pararLeitura()" class="btn-acess-opt">
+                <i class="fas fa-volume-mute"></i> Parar Leitura
+            </button>
+        </div>
+
+        <button class="btn-acessibilidade-toggle" onclick="toggleMenuAcessibilidade()" aria-label="Abrir menu de acessibilidade">
+            <span class="texto-expandido">Acessibilidade</span>
+            <i class="fas fa-universal-access"></i>
+        </button>
+    </div>
+
+    <nav class="menu-lateral" id="sidebar">
+        <div class="logo-container">
+            <div class="logo-icon">
+                <i class="fas fa-atom"></i>
+            </div>
+            <div class="logo-text">
+                <span>FUTURE</span>
+                <strong>SCHOOL</strong>
+            </div>
+            <button class="btn-close-sidebar" onclick="toggleSidebar()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <ul class="nav-links">
+            <li>
+                <button class="nav-btn ativo" onclick="navegarPara('materias')" id="btn-materias">
+                    <div class="indicador"></div>
+                    <i class="fas fa-book-open"></i> Matérias
+                </button>
+            </li>
+            <li>
+                <button class="nav-btn" onclick="navegarPara('notas')" id="btn-notas">
+                    <div class="indicador"></div>
+                    <i class="fas fa-chart-line"></i> Boletim
+                </button>
+            </li>
+            <li>
+                <button class="nav-btn" onclick="navegarPara('forum-geral')" id="btn-forum-geral">
+                    <div class="indicador"></div>
+                    <i class="fas fa-users"></i> Fórum Geral
+                </button>
+            </li>
+        </ul>
+
+        <div class="menu-footer">
+            <button class="btn-sair" onclick="alert('Saindo...')">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
+        </div>
+    </nav>
+
+    <main id="conteudo-principal" class="conteudo-principal">
+        <header class="top-bar">
+            <div class="header-left">
+                <button class="btn-menu-mobile" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 id="titulo-pagina">Painel do Estudante</h1>
+            </div>
+            
+            <div class="perfil-usuario">
+                <div class="info-user">
+                    <span class="saudacao">Bem-vindo,</span>
+                    <span class="nome">Aluno</span>
+                </div>
+                <div class="avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+        </header>
+
+        <section id="materias" class="secao ativo">
+            <div class="banner-boas-vindas">
+                <h2>Vamos aprender algo novo hoje?</h2>
+                <p>Selecione uma matéria abaixo para continuar seus estudos.</p>
+            </div>
+
+            <div class="grid-cards">
+                <article class="card card-interativo" onclick="abrirMateria(1)">
+                    <div class="card-badge">Em andamento</div>
+                    <div class="card-icon bg-blue">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>Matemática Básica</h3>
+                        <p class="professor">Prof. Carlos Silva</p>
+                        <div class="progress-container">
+                            <div class="progress-info">
+                                <span>Progresso</span>
+                                <span>70%</span>
+                            </div>
+                            <div class="progress-bg">
+                                <div class="progress-bar blue" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card card-interativo" onclick="abrirMateria(2)">
+                    <div class="card-badge">Novo Conteúdo</div>
+                    <div class="card-icon bg-orange">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>História do Brasil</h3>
+                        <p class="professor">Prof. Ana Souza</p>
+                        <div class="progress-container">
+                            <div class="progress-info">
+                                <span>Progresso</span>
+                                <span>40%</span>
+                            </div>
+                            <div class="progress-bg">
+                                <div class="progress-bar orange" style="width: 40%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="card card-interativo" onclick="abrirMateria(3)">
+                    <div class="card-icon bg-purple">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3>Química Geral</h3>
+                        <p class="professor">Prof. Roberto Mendes</p>
+                        <div class="progress-container">
+                            <div class="progress-info">
+                                <span>Progresso</span>
+                                <span>10%</span>
+                            </div>
+                            <div class="progress-bg">
+                                <div class="progress-bar purple" style="width: 10%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="detalhe-materia" class="secao">
+            <button class="btn-voltar" onclick="fecharMateria()">
+                <div class="icon-circle"><i class="fas fa-arrow-left"></i></div>
+                <span>Voltar</span>
+            </button>
+            
+            <div class="materia-header-banner">
+                <div class="banner-content">
+                    <h2 id="materia-titulo">Título</h2>
+                    <p id="materia-prof">Professor</p>
+                </div>
+                <i class="fas fa-shapes banner-icon"></i>
+            </div>
+
+            <div class="abas-scroll-container">
+                <div class="abas-materia">
+                    <button class="aba ativo" onclick="mudarAbaMateria('conteudo')">
+                        <i class="fas fa-layer-group"></i> Conteúdos
+                    </button>
+                    <button class="aba" onclick="mudarAbaMateria('forum-materia')">
+                        <i class="fas fa-comments"></i> Fórum
+                    </button>
+                    <button class="aba" onclick="mudarAbaMateria('atividades')">
+                        <i class="fas fa-tasks"></i> Atividades
+                    </button>
+                    <button class="aba" onclick="mudarAbaMateria('contato')">
+                        <i class="fas fa-envelope"></i> Contato
+                    </button>
+                </div>
+            </div>
+
+            <div id="conteudo" class="conteudo-aba ativo anime-up"></div>
+
+            <div id="forum-materia" class="conteudo-aba anime-up">
+                <div class="card-content">
+                    <h3>Dúvidas da Turma</h3>
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <textarea id="input-duvida-materia" class="input-texto" placeholder="Qual sua dúvida hoje?"></textarea>
+                            <button class="btn-mic" onclick="iniciarDitado('input-duvida-materia')" aria-label="Digitar por voz">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                        </div>
+                        <button class="btn-acao">Enviar Pergunta</button>
+                    </div>
+                    <div id="lista-forum-materia" class="lista-clean"></div>
+                </div>
+            </div>
+
+            <div id="atividades" class="conteudo-aba anime-up">
+                <div class="card-content">
+                    <h3>Próximas Entregas</h3>
+                    <ul id="lista-atividades" class="lista-atividades-style"></ul>
+                </div>
+            </div>
+
+            <div id="contato" class="conteudo-aba anime-up">
+                <div class="card-content">
+                    <h3>Enviar E-mail para o Professor</h3>
+                    <p style="margin-bottom: 20px; color: var(--text-light);">
+                        <i class="fas fa-info-circle"></i> O e-mail será enviado para: <strong id="email-prof-display" style="color: var(--primary);"></strong>
+                    </p>
+                    <div class="input-group">
+                        <input type="text" id="email-assunto" class="input-texto" placeholder="Assunto do E-mail">
+                        <div class="input-wrapper">
+                            <textarea id="email-mensagem" class="input-texto" rows="6" placeholder="Escreva sua mensagem para o professor..."></textarea>
+                            <button class="btn-mic" onclick="iniciarDitado('email-mensagem')" aria-label="Digitar por voz">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                        </div>
+                        <button class="btn-acao" onclick="enviarEmailProfessor()">
+                            <i class="fas fa-paper-plane"></i> Enviar E-mail
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="notas" class="secao">
+            <div class="card-content full-width">
+                <div class="card-header-simple">
+                    <h2>Desempenho Acadêmico</h2>
+                </div>
+                <div class="table-responsive">
+                    <table class="tabela-moderna">
+                        <thead>
+                            <tr>
+                                <th>Disciplina</th>
+                                <th>P1</th>
+                                <th>P2</th>
+                                <th>Média</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><div class="td-materia"><div class="dot blue"></div>Matemática</div></td>
+                                <td>8.5</td>
+                                <td>9.0</td>
+                                <td><strong>8.75</strong></td>
+                                <td><span class="badge aprovado">Aprovado</span></td>
+                            </tr>
+                            <tr>
+                                <td><div class="td-materia"><div class="dot orange"></div>História</div></td>
+                                <td>7.0</td>
+                                <td>8.0</td>
+                                <td><strong>7.5</strong></td>
+                                <td><span class="badge aprovado">Aprovado</span></td>
+                            </tr>
+                            <tr>
+                                <td><div class="td-materia"><div class="dot purple"></div>Química</div></td>
+                                <td>4.0</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td><span class="badge cursando">Cursando</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="forum-geral" class="secao">
+            <div class="card-content">
+                <h2>Comunidade Escolar</h2>
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <textarea id="input-forum-geral" class="input-texto" rows="4" placeholder="Compartilhe algo com a escola..."></textarea>
+                        <button class="btn-mic" onclick="iniciarDitado('input-forum-geral')" aria-label="Digitar por voz">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                    <button class="btn-acao">Publicar</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
